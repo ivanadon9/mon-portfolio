@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Polices Google Fonts : Bebas Neue (titres) | Rajdhani (sous-titres) | Poppins (corps) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#accueil" class="logo">Ivan ADON</a>
+      <ul class="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#apropos">À propos</a></li>
+        <li><a href="#competences">Compétences</a></li>
+        <li><a href="#projets">Projets</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <!-- Bouton menu burger (visible uniquement sur mobile) -->
+      <!-- On le cachera sur desktop avec le CSS -->
+      <button class="menu-burger" id="menuBurger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ==============================
+        SECTION ACCUEIL 
+  ============================== -->
+  <section id="accueil" class="hero">
+
+    <div class="hero-content">
+      <p class="hero-salutation">Bonjour, je suis</p>
+      <h1 class="hero-nom">Ivan ADON</h1>
+      <!-- La partie dans <span> sera animée en JS -->
+      <h2 class="hero-titre">
+        Je suis <span id="texte-anime">Développeur Web</span>
+      </h2>
+      <p class="hero-description">
+        Passionné par le web et les nouvelles technologies,
+        je crée des expériences numériques modernes et intuitives.
+      </p>
+
+      <div class="hero-boutons">
+        <a href="#projets" class="btn btn-principal">Voir mes projets</a>
+        <a href="#contact" class="btn btn-secondaire">Me contacter</a>
+      </div>
+    </div>
+
+    <!-- Photo de profil -->
+    <div class="hero-image">
+      <!-- Remplace "images/photo.jpg" par ta vraie photo -->
+      <img src="images/photo de Ivan.jpg" alt="Ma photo de profil">
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+        SECTION À PROPOS
+  ============================== -->
+  <section id="apropos" class="section">
+
+    <div class="section-titre reveal">
+      <h2>À Propos</h2>
+      <p>Qui suis-je ?</p>
+    </div>
+
+    <div class="apropos-contenu reveal">
+
+      <div class="apropos-texte">
+        <h3>Un développeur passionné 👋</h3>
+        <p>
+          Je m'appelle Ivan Adon, j'ai 24 ans et je suis basé à Abidjan, Côte d'Ivoire.
+          Je me forme en développement web avec un intérêt particulier pour
+          la création d'interfaces modernes et performantes.
+        </p>
+        <p>
+          En dehors du code, j'aime la lecture, le sport et apprendre
+          de nouvelles choses chaque jour.
+        </p>
+
+        <ul class="apropos-infos">
+          <li><strong>📍 Localisation :</strong> Abidjan, Côte d'Ivoire</li>
+          <li><strong>🎓 Formation :</strong> Développement Web</li>
+          <li><strong>💼 Disponibilité :</strong> Ouvert aux opportunités</li>
+          <li><strong>📧 Email :</strong> ivannadon9@gmail.com</li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+        SECTION COMPÉTENCES
+  ============================== -->
+  <section id="competences" class="section section-grise">
+
+    <div class="section-titre reveal">
+      <h2>Compétences</h2>
+      <p>Ce que je maîtrise</p>
+    </div>
+
+    <!-- Grille de compétences -->
+    <div class="competences-grille">
+
+      <div class="competence-carte reveal delai-1">
+        <div class="competence-icone">🌐</div>
+        <h3>HTML</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="85"></div>
+        </div>
+        <span class="niveau-texte">85%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-2">
+        <div class="competence-icone">🎨</div>
+        <h3>CSS</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="75"></div>
+        </div>
+        <span class="niveau-texte">75%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-3">
+        <div class="competence-icone">⚡</div>
+        <h3>JavaScript</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="60"></div>
+        </div>
+        <span class="niveau-texte">60%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-4">
+        <div class="competence-icone">🐙</div>
+        <h3>Git & GitHub</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="70"></div>
+        </div>
+        <span class="niveau-texte">70%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-5">
+        <div class="competence-icone">📱</div>
+        <h3>React</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-6">
+        <div class="competence-icone">🔧</div>
+        <h3>TypeScript</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-7">
+        <div class="competence-icone">🔧</div>
+        <h3>node.js</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-8">
+        <div class="competence-icone">🔧</div>
+        <h3>Express.js</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-9">
+        <div class="competence-icone">🔧</div>
+        <h3>PostgreSQL</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-10">
+        <div class="competence-icone">🔧</div>
+        <h3>API REST</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-11">
+        <div class="competence-icone">🔧</div>
+        <h3>Authentification JWT</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-12">
+        <div class="competence-icone">🔧</div>
+        <h3>Vercel</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-13">
+        <div class="competence-icone">🔧</div>
+        <h3>Docker</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+        SECTION PROJETS
+  ============================== -->
+  <section id="projets" class="section">
+
+    <div class="section-titre reveal">
+      <h2>Mes Projets</h2>
+      <p>Ce que j'ai réalisé</p>
+    </div>
+
+    <!-- Grille de projets — clique sur une carte pour voir les détails -->
+    <div class="projets-grille">
+
+      <!-- ================================
+           PROJET 1
+      ================================ -->
+      <div class="projet-carte reveal delai-1" onclick="ouvrirModale('projet1')">
+        <div class="projet-image">
+          <img src="images/projet1.jpg" alt="Page d'atterrissage">
+          <div class="projet-overlay">
+            <span class="overlay-icone">🔍</span>
+            <p>Voir les détails</p>
+          </div>
+        </div>
+        <div class="projet-info">
+          <h3>Page d'atterrissage</h3>
+          <p>Landing page moderne pour une startup fictive.</p>
+          <div class="projet-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJET 2 -->
+      <div class="projet-carte reveal delai-2" onclick="ouvrirModale('projet2')">
+        <div class="projet-image">
+          <img src="images/projet2.jpg" alt="Calculatrice">
+          <div class="projet-overlay">
+            <span class="overlay-icone">🔍</span>
+            <p>Voir les détails</p>
+          </div>
+        </div>
+        <div class="projet-info">
+          <h3>Calculatrice</h3>
+          <p>Une calculatrice fonctionnelle avec JavaScript pur.</p>
+          <div class="projet-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROJET 3 -->
+      <div class="projet-carte reveal delai-3" onclick="ouvrirModale('projet3')">
+        <div class="projet-image">
+          <img src="images/projet3.jpg" alt="Site Restaurant">
+          <div class="projet-overlay">
+            <span class="overlay-icone">🔍</span>
+            <p>Voir les détails</p>
+          </div>
+        </div>
+        <div class="projet-info">
+          <h3>Site Restaurant</h3>
+          <p>Site vitrine pour un restaurant avec menu interactif.</p>
+          <div class="projet-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       MODALES DES PROJETS
+  ============================== -->
+
+  <!-- MODALE PROJET 1 -->
+  <div class="modale" id="projet1">
+    <div class="modale-contenu">
+
+      <!-- Bouton fermer (×) en haut à droite -->
+      <button class="modale-fermer" onclick="fermerModale('projet1')">×</button>
+
+      <img src="images/projet1.jpg" alt="Page d'atterrissage" class="modale-image">
+
+      <div class="modale-corps">
+        <h2>Page d'atterrissage</h2>
+
+        <p class="modale-description">
+          Création d'une landing page complète pour une startup fictive dans le
+          domaine de la tech. L'objectif était de présenter le produit de façon
+          claire et d'inciter le visiteur à s'inscrire.
+        </p>
+
+        <div class="modale-infos">
+
+          <div class="modale-info-item">
+            <span class="info-label">🛠️ Technologies</span>
+            <div class="projet-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Flexbox</span>
+            </div>
+          </div>
+
+          <div class="modale-info-item">
+            <span class="info-label">⏱️ Durée</span>
+            <p>3 jours</p>
+          </div>
+
+          <div class="modale-info-item">
+            <span class="info-label">🎯 Objectif</span>
+            <p>Maîtriser la mise en page avec Flexbox et créer un design attractif.</p>
+          </div>
+
+          <div class="modale-info-item">
+            <span class="info-label">✅ Ce que j'ai appris</span>
+            <p>Gestion des sections, responsive design, utilisation des variables CSS.</p>
+          </div>
+
+        </div>
+
+        <!-- Boutons d'action -->
+        <div class="modale-boutons">
+          <a href="#" class="btn btn-principal">🌐 Voir en ligne</a>
+          <a href="#" class="btn btn-secondaire">🐙 Voir sur GitHub</a>
+        </div>
+      </div>
+
+    </div>
+    <!-- Cliquer en dehors de la modale la ferme aussi -->
+    <div class="modale-fond" onclick="fermerModale('projet1')"></div>
+  </div>
+
+
+  <!-- MODALE PROJET 2 -->
+  <div class="modale" id="projet2">
+    <div class="modale-contenu">
+      <button class="modale-fermer" onclick="fermerModale('projet2')">×</button>
+      <img src="images/projet2.jpg" alt="Calculatrice" class="modale-image">
+      <div class="modale-corps">
+        <h2>Calculatrice</h2>
+        <p class="modale-description">
+          Application de calculatrice entièrement fonctionnelle réalisée avec
+          JavaScript pur, sans aucune bibliothèque externe. Supporte les 4
+          opérations de base ainsi que les nombres décimaux.
+        </p>
+        <div class="modale-infos">
+          <div class="modale-info-item">
+            <span class="info-label">🛠️ Technologies</span>
+            <div class="projet-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+            </div>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">⏱️ Durée</span>
+            <p>5 jours</p>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">🎯 Objectif</span>
+            <p>Manipuler le DOM et comprendre la logique JavaScript.</p>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">✅ Ce que j'ai appris</span>
+            <p>Gestion des événements, manipulation du DOM, logique conditionnelle.</p>
+          </div>
+        </div>
+        <div class="modale-boutons">
+          <a href="#" class="btn btn-principal">🌐 Voir en ligne</a>
+          <a href="#" class="btn btn-secondaire">🐙 Voir sur GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="modale-fond" onclick="fermerModale('projet2')"></div>
+  </div>
+
+
+  <!-- MODALE PROJET 3 -->
+  <div class="modale" id="projet3">
+    <div class="modale-contenu">
+      <button class="modale-fermer" onclick="fermerModale('projet3')">×</button>
+      <img src="images/projet3.jpg" alt="Site Restaurant" class="modale-image">
+      <div class="modale-corps">
+        <h2>Site Restaurant</h2>
+        <p class="modale-description">
+          Site vitrine pour un restaurant fictif avec présentation du menu,
+          galerie photos et formulaire de réservation. Design élégant adapté
+          à l'image d'un établissement haut de gamme.
+        </p>
+        <div class="modale-infos">
+          <div class="modale-info-item">
+            <span class="info-label">🛠️ Technologies</span>
+            <div class="projet-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">Grid</span>
+            </div>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">⏱️ Durée</span>
+            <p>4 jours</p>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">🎯 Objectif</span>
+            <p>Maîtriser CSS Grid et créer un design élégant multi-sections.</p>
+          </div>
+          <div class="modale-info-item">
+            <span class="info-label">✅ Ce que j'ai appris</span>
+            <p>CSS Grid, galerie d'images, formulaire HTML complet.</p>
+          </div>
+        </div>
+        <div class="modale-boutons">
+          <a href="#" class="btn btn-principal">🌐 Voir en ligne</a>
+          <a href="#" class="btn btn-secondaire">🐙 Voir sur GitHub</a>
+        </div>
+      </div>
+    </div>
+    <div class="modale-fond" onclick="fermerModale('projet3')"></div>
+  </div>
+
+
+  <!-- ==============================
+       6. SECTION CONTACT
+  ============================== -->
+  <section id="contact" class="section section-grise">
+
+    <div class="section-titre reveal">
+      <h2>Contact</h2>
+      <p>Travaillons ensemble</p>
+    </div>
+
+    <div class="contact-contenu">
+
+      <!-- Informations de contact -->
+      <div class="contact-infos">
+        <h3>Parlons de ton projet 💬</h3>
+        <p>
+          Tu as un projet en tête ? Une question ? N'hésite pas
+          à me contacter, je répondrai dans les plus brefs délais.
+        </p>
+
+        <div class="contact-item">
+          <span class="contact-icone">📧</span>
+          <div>
+            <strong>Email</strong>
+            <p>ivannadon9@gmail.com</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <span class="contact-icone">📍</span>
+          <div>
+            <strong>Localisation</strong>
+            <p>Abidjan, Côte d'Ivoire</p>
+          </div>
+        </div>
+
+        <!-- Liens réseaux sociaux -->
+        <div class="reseaux-sociaux">
+          <a href="#" class="reseau-lien">GitHub</a>
+          <a href="#" class="reseau-lien">LinkedIn</a>
+          <a href="#" class="reseau-lien">Twitter</a>
+        </div>
+
+      </div>
+
+      <!-- Formulaire de contact -->
+      <form class="contact-formulaire" id="contactForm">
+
+        <div class="form-groupe">
+          <label for="nom">Ton nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Ex: Marie Dupont" required>
+        </div>
+
+        <div class="form-groupe">
+          <label for="email">Ton email</label>
+          <input type="email" id="email" name="email" placeholder="Ex: marie@email.com" required>
+        </div>
+
+        <div class="form-groupe">
+          <label for="sujet">Sujet</label>
+          <input type="text" id="sujet" name="sujet" placeholder="Ex: Proposition de projet" required>
+        </div>
+
+        <div class="form-groupe">
+          <label for="message">Ton message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Décris ton projet..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-principal">
+          Envoyer le message ✉️
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==============================
+       7. PIED DE PAGE (FOOTER)
+  ============================== -->
+  <footer>
+    <p>
+      © 2026  Ivan Adon  — Fait avec ❤️ et beaucoup de ☕
+    </p>
+    <p>
+      <a href="#accueil">Retour en haut ↑</a>
+    </p>
+  </footer>
+
+<!-- Bouton flottant retour en haut -->
+  <button id="btn-haut" title="Retour en haut">↑</button>
+
+  <!-- On relie notre fichier JavaScript (toujours à la fin du body) -->
+  <!-- Pourquoi à la fin ? Pour que le HTML charge avant le JS -->
+  <script src="script.js"></script>
+
+</body>
+</html>

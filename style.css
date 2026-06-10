@@ -1,0 +1,1347 @@
+/* ================================================
+    IMPORT DES POLICES GOOGLE FONTS
+   ================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+:root{
+    /* === COULEURS PRINCIPALES === */
+    --noir: #000000;
+    --blanc: #FFFFFF;
+    --cyber-blue: #00D4FF;
+    /* Gris foncé : pour les surfaces, cartes, sections alternées */
+    --gris-fonce:     #0a0a0a;
+  /* Gris moyen : pour les bordures, séparateurs */
+    --gris-moyen:     #1a1a1a;
+  /* Gris clair : pour le texte secondaire */
+    --gris-clair:     #888888;
+  /* Cyber Blue atténué : pour les fonds subtils */
+    --cyber-blue-dim: rgba(0, 212, 255, 0.08);
+  /* Cyber Blue glow : pour les ombres lumineuses */
+    --cyber-glow:     0 0 20px rgba(0, 212, 255, 0.4);
+    --cyber-glow-fort:0 0 40px rgba(0, 212, 255, 0.6);
+
+    /* === POLICES === */
+  --police-titre:   'Bebas Neue', sans-serif;    /* Titres, logo, headlines */
+  --police-sous:    'Rajdhani', sans-serif;       /* Sous-titres, nav, labels */
+  --police-corps:   'Poppins', sans-serif;        /* Texte courant */
+
+  /* === TAILLES DE TEXTE === */
+  --texte-petit:    0.875rem;  /* 14px */
+  --texte-normal:   1rem;      /* 16px */
+  --texte-moyen:    1.25rem;   /* 20px */
+  --texte-grand:    1.5rem;    /* 24px */
+  --texte-titre:    3rem;      /* 48px — Bebas Neue est plus compact */
+  --texte-hero:     5rem;      /* 80px */
+
+  /* === ESPACEMENTS === */
+  --espace-petit:   0.5rem;
+  --espace-normal:  1rem;
+  --espace-moyen:   2rem;
+  --espace-grand:   4rem;
+  --espace-section: 6rem;
+
+  /* === EFFETS === */
+  --ombre:          0 4px 20px rgba(0, 0, 0, 0.5);
+  --ombre-forte:    0 8px 40px rgba(0, 0, 0, 0.8);
+  --rayon:          4px;          /* Coins peu arrondis = style futuriste anguleux */
+  --transition:     0.3s ease;
+}
+
+/* ================================================
+    RESET CSS
+   ================================================ */
+
+*,*::before, *::after{
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+img{
+    max-width: 100%;
+    display: block;
+}
+
+ul{ list-style: none; }
+
+a {
+    text-decoration:none;
+    color: inherit;
+}
+
+/* ================================================
+    STYLES GLOBAUX
+   ================================================ */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--police-corps);
+  font-size: var(--texte-normal);
+  color: var(--blanc);
+  background-color: var(--noir);
+  line-height: 1.6;
+  /* Scrollbar personnalisée */
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyber-blue) var(--gris-moyen);
+}
+
+/* Scrollbar pour Chrome/Safari */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--gris-moyen); }
+::-webkit-scrollbar-thumb {
+  background: var(--cyber-blue);
+  border-radius: 3px;
+}
+
+::selection{
+    background: var(--cyber-blue);
+    color: var(--noir);
+}
+
+.section {
+    padding: var(--espace-section) var(--espace-moyen);
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Sections alternées avec fond légèrement différent */
+.section-grise {
+  background-color: var(--gris-fonce);
+  max-width: 100%;
+  padding: var(--espace-section) var(--espace-moyen);
+}
+ 
+.section-grise > * {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ================================================
+    TITRES DE SECTION
+   ================================================ */
+.section-titre {
+    text-align: center;
+    margin-bottom: var(--espace-grand);
+}
+
+.section-titre h2 {
+    font-family: var(--police-titre);
+    font-size: var(--texte-titre);
+    font-weight: 400; 
+    color: var(--blanc);
+    letter-spacing: 4px; /* Espacement des lettres = style futuriste */
+    position: relative;
+    display: inline-block;
+    padding-bottom: var(--espace-normal);
+}
+
+.section-titre h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: var(--cyber-blue);
+  box-shadow: var(--cyber-glow); /* Effet lumineux */
+}
+ 
+.section-titre p {
+  font-family: var(--police-sous);
+  color: var(--gris-clair);
+  font-size: var(--texte-moyen);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: var(--espace-normal);
+}
+
+/* ================================================
+   6. BOUTONS
+   ================================================ */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  font-family: var(--police-sous);
+  font-size: var(--texte-normal);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Bouton principal : fond cyber blue */
+.btn-principal {
+  background-color: var(--cyber-blue);
+  color: var(--noir);
+  border-color: var(--cyber-blue);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+  /* clip-path = forme légèrement biseautée, style futuriste */
+}
+
+.btn-principal:hover {
+  background-color: transparent;
+  color: var(--cyber-blue);
+  box-shadow: var(--cyber-glow);
+}
+
+/* Bouton secondaire : contour cyber blue */
+.btn-secondaire {
+  background-color: transparent;
+  color: var(--cyber-blue);
+  border-color: var(--cyber-blue);
+  clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+}
+
+.btn-secondaire:hover {
+  background-color: var(--cyber-blue);
+  color: var(--noir);
+  box-shadow: var(--cyber-glow);
+}
+
+/* ================================================
+    BARRE DE NAVIGATION
+   ================================================ */
+#navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+  z-index: 1000;
+  transition: all var(--transition);
+}
+
+.nav-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.2rem var(--espace-moyen);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo en Bebas Neue avec glow */
+.logo {
+  font-family: var(--police-titre);
+  font-size: 2rem;
+  letter-spacing: 4px;
+  color: var(--cyber-blue);
+  text-shadow: var(--cyber-glow);
+  transition: text-shadow var(--transition);
+}
+
+.logo:hover {
+  text-shadow: var(--cyber-glow-fort);
+}
+
+/* Liens de navigation en Rajdhani */
+.nav-links {
+  display: flex;
+  gap: var(--espace-moyen);
+}
+
+.nav-links a {
+  font-family: var(--police-sous);
+  font-weight: 600;
+  font-size: var(--texte-normal);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blanc);
+  position: relative;
+  padding-bottom: 4px;
+  transition: color var(--transition);
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--cyber-blue);
+  box-shadow: var(--cyber-glow);
+  transition: width var(--transition);
+}
+
+.nav-links a:hover {
+  color: var(--cyber-blue);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Bouton burger mobile */
+.menu-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.menu-burger span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background-color: var(--cyber-blue);
+  transition: all var(--transition);
+}
+
+/* ================================================
+    SECTION HERO
+   ================================================ */
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-grand);
+  padding: calc(80px + var(--espace-grand)) var(--espace-moyen) var(--espace-grand);
+  max-width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.hero::before {
+    content:'';
+    position: fixed;
+    inset: 0;
+    background-image:
+    linear-gradient(0, 212, 255, 0.03, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none; /* Ne bloque pas les clics */
+    z-index: -1;
+}
+
+.hero-content {
+    flex: 1;
+}
+
+.hero-salutation {
+  font-family: var(--police-sous);
+  font-size: var(--texte-moyen);
+  color: var(--cyber-blue);
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: var(--espace-petit);
+}
+
+.hero-nom {
+  font-family: var(--police-titre);
+  font-size: var(--texte-hero);
+  font-weight: 400;
+  color: var(--blanc);
+  line-height: 1;
+  letter-spacing: 4px;
+  margin-bottom: var(--espace-normal);
+  /* Effet de reflet subtil sur le texte */
+  text-shadow: 0 0 80px rgba(255,255,255,0.1);
+}
+
+.hero-titre {
+  font-family: var(--police-sous);
+  font-size: var(--texte-grand);
+  font-weight: 500;
+  color: var(--blanc);
+  margin-bottom: var(--espace-normal);
+  letter-spacing: 1px;
+}
+
+/* Texte animé en cyber blue avec curseur */
+#texte-anime {
+  color: var(--cyber-blue);
+  font-weight: 700;
+  border-right: 3px solid var(--cyber-blue);
+  padding-right: 4px;
+  text-shadow: var(--cyber-glow);
+  animation: clignote 0.8s infinite;
+}
+
+@keyframes clignote {
+    0%, 100% {border-color: var(--cyber-blue); }
+    50%      { border-color: transparent; }
+}
+
+.hero-description {
+  font-family: var(--police-corps);
+  font-size: var(--texte-normal);
+  color: var(--gris-clair);
+  max-width: 500px;
+  margin-bottom: var(--espace-moyen);
+  line-height: 1.8;
+}
+
+.hero-boutons {
+  display: flex;
+  gap: var(--espace-normal);
+  flex-wrap: wrap;
+}
+
+/* Photo de profil */
+.hero-image {
+  flex: 0 0 340px;
+  position: relative;
+}
+
+/* Cadre lumineux autour de la photo */
+.hero-image::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 2px solid var(--cyber-blue);
+  border-radius: var(--rayon);
+  box-shadow: var(--cyber-glow);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-image img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--rayon);
+  filter: grayscale(20%); /* Légère désaturation pour le côté tech */
+  transition: filter var(--transition), transform var(--transition);
+}
+
+/* Remet la saturation lorsque passe le curseur sur la photo */
+.hero-image img:hover {
+  filter: grayscale(0%);
+  transform: scale(1.02);
+}
+
+/* ================================================
+    SECTION À PROPOS
+   ================================================ */
+
+.apropos-contenu {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.apropos-texte h3 {
+  font-family: var(--police-sous);
+  font-size: var(--texte-grand);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--blanc);
+  margin-bottom: var(--espace-normal);
+}
+
+.apropos-texte p {
+  color: var(--gris-clair);
+  margin-bottom: var(--espace-normal);
+  line-height: 1.8;
+}
+
+.apropos-infos {
+  margin: var(--espace-moyen) 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espace-normal);
+}
+
+.apropos-infos li {
+  color: var(--gris-clair);
+  font-size: var(--texte-petit);
+  padding: var(--espace-normal);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--rayon);
+  background: var(--cyber-blue-dim);
+}
+
+.apropos-infos strong {
+  display: block;
+  font-family: var(--police-sous);
+  color: var(--cyber-blue);
+  font-size: var(--texte-petit);
+  letter-spacing: 1px;
+  margin-bottom: 2px;
+}
+
+/* ================================================
+   10. SECTION COMPÉTENCES
+   ================================================ */
+
+.competences-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--espace-moyen);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.competence-carte {
+  background: var(--gris-moyen);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--rayon);
+  padding: var(--espace-moyen);
+  text-align: center;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.competence-carte:hover {
+  border-color: var(--cyber-blue);
+  box-shadow: var(--cyber-glow);
+  transform: translateY(-5px);
+}
+
+.competence-icone {
+  font-size: 2.5rem;
+  margin-bottom: var(--espace-normal);
+}
+
+.competence-carte h3 {
+  font-family: var(--police-sous);
+  font-size: var(--texte-normal);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blanc);
+  margin-bottom: var(--espace-normal);
+}
+
+.barre-container {
+  background-color: var(--noir);
+  border-radius: 0;          /* Barre rectangulaire, style futuriste */
+  height: 4px;
+  overflow: hidden;
+  margin-bottom: var(--espace-petit);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.barre {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cyber-blue), rgba(0, 212, 255, 0.4));
+  box-shadow: var(--cyber-glow);
+  width: 0;
+  transition: width 1.2s ease;
+}
+
+.niveau-texte {
+  font-family: var(--police-sous);
+  font-size: var(--texte-petit);
+  color: var(--cyber-blue);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ================================================
+    SECTION PROJETS
+   ================================================ */
+
+.projets-grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--espace-moyen);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.projet-carte {
+  background: var(--gris-moyen);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  border-radius: var(--rayon);
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition);
+}
+
+.projet-carte:hover {
+  border-color: var(--cyber-blue);
+  box-shadow: var(--cyber-glow);
+  transform: translateY(-8px);
+}
+
+.projet-image {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.projet-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(30%);
+  transition: transform var(--transition), filter var(--transition);
+}
+
+.projet-carte:hover .projet-image img {
+  transform: scale(1.05);
+  filter: grayscale(0%);
+}
+
+/* Overlay cyber blue au survol */
+.projet-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 212, 255, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-petit);
+  opacity: 0;
+  transition: opacity var(--transition);
+  color: var(--noir);
+  font-family: var(--police-sous);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.projet-carte:hover .projet-overlay {
+  opacity: 1;
+}
+
+.overlay-icone {
+  font-size: 2rem;
+}
+
+.projet-info {
+  padding: var(--espace-normal) var(--espace-moyen);
+}
+
+.projet-info h3 {
+  font-family: var(--police-sous);
+  font-size: var(--texte-moyen);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--blanc);
+  margin-bottom: var(--espace-petit);
+}
+
+.projet-info p {
+  color: var(--gris-clair);
+  font-size: var(--texte-petit);
+  margin-bottom: var(--espace-normal);
+}
+
+.projet-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--espace-petit);
+}
+
+.tag {
+  background-color: transparent;
+  color: var(--cyber-blue);
+  padding: 3px 10px;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  border-radius: 0;           /* Carré, style futuriste */
+  font-family: var(--police-sous);
+  font-size: var(--texte-petit);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ================================================
+   12. MODALES
+   ================================================ */
+
+.modale {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: var(--espace-normal);
+}
+
+.modale.active {
+  display: flex;
+}
+ 
+.modale-fond {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+}
+ 
+.modale-contenu {
+  position: relative;
+  background: var(--gris-moyen);
+  border: 1px solid var(--cyber-blue);
+  box-shadow: var(--cyber-glow-fort);
+  border-radius: var(--rayon);
+  max-width: 650px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  z-index: 1;
+  animation: apparition 0.3s ease;
+  scrollbar-width: thin;
+  scrollbar-color: var(--cyber-blue) var(--noir);
+}
+
+@keyframes apparition {
+  from { opacity: 0; transform: scale(0.9) translateY(20px); }
+  to   { opacity: 1; transform: scale(1)   translateY(0); }
+}
+
+.modale-fermer {
+  position: absolute;
+  top: var(--espace-normal);
+  right: var(--espace-normal);
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  color: var(--cyber-blue);
+  width: 36px;
+  height: 36px;
+  border-radius: 0;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  z-index: 2;
+}
+
+.modale-fermer:hover {
+  background: var(--cyber-blue);
+  color: var(--noir);
+  box-shadow: var(--cyber-glow);
+}
+
+.modale-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-bottom: 2px solid var(--cyber-blue);
+  filter: grayscale(20%);
+}
+
+.modale-corps {
+  padding: var(--espace-moyen);
+}
+
+.modale-corps h2 {
+  font-family: var(--police-titre);
+  font-size: 2.5rem;
+  letter-spacing: 4px;
+  color: var(--blanc);
+  margin-bottom: var(--espace-normal);
+}
+
+.modale-description {
+  color: var(--gris-clair);
+  line-height: 1.8;
+  margin-bottom: var(--espace-moyen);
+}
+
+.modale-infos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--espace-normal);
+  margin-bottom: var(--espace-moyen);
+}
+
+.modale-info-item {
+  background: var(--noir);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  padding: var(--espace-normal);
+  border-radius: var(--rayon);
+}
+
+.info-label {
+  display: block;
+  font-family: var(--police-sous);
+  font-weight: 700;
+  color: var(--cyber-blue);
+  margin-bottom: var(--espace-petit);
+  font-size: var(--texte-petit);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.modale-info-item p {
+  color: var(--gris-clair);
+  font-size: var(--texte-petit);
+}
+
+.modale-boutons {
+  display: flex;
+  gap: var(--espace-normal);
+  flex-wrap: wrap;
+}
+
+/* ================================================
+   13. SECTION CONTACT
+   ================================================ */
+
+.contact-contenu {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--espace-grand);
+  max-width: 1100px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.contact-infos h3 {
+  font-family: var(--police-sous);
+  font-size: var(--texte-grand);
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--blanc);
+  margin-bottom: var(--espace-normal);
+}
+
+.contact-infos > p {
+  color: var(--gris-clair);
+  line-height: 1.8;
+  margin-bottom: var(--espace-moyen);
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--espace-normal);
+  margin-bottom: var(--espace-normal);
+  padding: var(--espace-normal);
+  border: 1px solid rgba(0, 212, 255, 0.1);
+  background: var(--cyber-blue-dim);
+  border-radius: var(--rayon);
+  transition: border-color var(--transition);
+}
+
+.contact-item:hover {
+  border-color: var(--cyber-blue);
+}
+
+.contact-icone {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.contact-item strong {
+  display: block;
+  font-family: var(--police-sous);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cyber-blue);
+  font-size: var(--texte-petit);
+  margin-bottom: 2px;
+}
+
+.contact-item p {
+  color: var(--gris-clair);
+  font-size: var(--texte-petit);
+}
+
+.reseaux-sociaux {
+  display: flex;
+  gap: var(--espace-normal);
+  margin-top: var(--espace-moyen);
+  flex-wrap: wrap;
+}
+
+.reseau-lien {
+  padding: 0.5rem 1.2rem;
+  border: 1px solid rgba(0, 212, 255, 0.4);
+  color: var(--cyber-blue);
+  font-family: var(--police-sous);
+  font-weight: 700;
+  font-size: var(--texte-petit);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: all var(--transition);
+  border-radius: var(--rayon);
+}
+
+.reseau-lien:hover {
+  background: var(--cyber-blue);
+  color: var(--noir);
+  box-shadow: var(--cyber-glow);
+}
+
+/* Formulaire */
+.contact-formulaire {
+  background: var(--gris-moyen);
+  border: 1px solid rgba(0, 212, 255, 0.15);
+  padding: var(--espace-moyen);
+  border-radius: var(--rayon);
+}
+
+.form-groupe {
+  margin-bottom: var(--espace-normal);
+}
+
+.form-groupe label {
+  display: block;
+  font-family: var(--police-sous);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyber-blue);
+  margin-bottom: var(--espace-petit);
+  font-size: var(--texte-petit);
+}
+
+.form-groupe input,
+.form-groupe textarea {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: var(--rayon);
+  font-family: var(--police-corps);
+  font-size: var(--texte-normal);
+  color: var(--blanc);
+  background: var(--noir);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  outline: none;
+}
+
+.form-groupe input:focus,
+.form-groupe textarea:focus {
+  border-color: var(--cyber-blue);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.form-groupe textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* Texte du placeholder */
+.form-groupe input::placeholder,
+.form-groupe textarea::placeholder {
+  color: var(--gris-clair);
+  opacity: 0.6;
+}
+
+.form-succes {
+  display: none;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid var(--cyber-blue);
+  color: var(--cyber-blue);
+  padding: var(--espace-normal);
+  border-radius: var(--rayon);
+  margin-top: var(--espace-normal);
+  text-align: center;
+  font-family: var(--police-sous);
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.form-succes.visible {
+  display: block;
+}
+
+/* ================================================
+   14. FOOTER
+   ================================================ */
+
+footer {
+  background: var(--gris-moyen);
+  border-top: 1px solid rgba(0, 212, 255, 0.2);
+  color: var(--gris-clair);
+  text-align: center;
+  padding: var(--espace-moyen);
+  font-family: var(--police-sous);
+  letter-spacing: 1px;
+}
+
+footer p {
+  margin-bottom: var(--espace-petit);
+}
+
+footer a {
+  color: var(--cyber-blue);
+  font-weight: 700;
+  transition: text-shadow var(--transition);
+}
+
+footer a:hover {
+  text-shadow: var(--cyber-glow);
+}
+
+/* ================================================
+   15. RESPONSIVE — MOBILE
+   ================================================ */
+
+@media (max-width: 900px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding-top: calc(80px + var(--espace-moyen));
+  }
+ 
+  .hero-boutons { justify-content: center; }
+  .hero-description { margin: 0 auto var(--espace-moyen); }
+  .hero-image { flex: none; width: 260px; }
+  .hero-nom { font-size: 3.5rem; }
+  .contact-contenu { grid-template-columns: 1fr; }
+  .apropos-infos { grid-template-columns: 1fr; }
+  .modale-infos { grid-template-columns: 1fr; }
+}
+ 
+@media (max-width: 600px) {
+  :root {
+    --texte-hero:  3rem;
+    --texte-titre: 2.2rem;
+  }
+ 
+  .section, .section-grise {
+    padding: var(--espace-grand) var(--espace-normal);
+  }
+ 
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.97);
+    border-top: 1px solid rgba(0, 212, 255, 0.2);
+    flex-direction: column;
+    padding: var(--espace-normal);
+    gap: var(--espace-normal);
+  }
+ 
+  .nav-links.ouvert { display: flex; }
+  .menu-burger { display: flex; }
+  .projets-grille { grid-template-columns: 1fr; }
+  .hero-boutons { flex-direction: column; align-items: center; }
+  .modale-boutons { flex-direction: column; }
+}
+
+/* ================================================
+   ÉTAPE 4 — ANIMATIONS CSS
+   ================================================ */
+
+
+  /* ================================================
+    ANIMATIONS AU SCROLL — SCROLL REVEAL
+   ================================================ */
+
+/* État INITIAL — élément caché, 30px plus bas */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+/* État FINAL — élément visible, à sa position normale */
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Variante : apparition depuis la gauche */
+.reveal-gauche {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-gauche.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Variante : apparition depuis la droite */
+.reveal-droite {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-droite.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Délais en cascade — les éléments d'une grille
+   apparaissent les uns après les autres */
+/* Usage : <div class="reveal delai-1"> */
+ 
+.delai-1 { transition-delay: 0.1s; }
+.delai-2 { transition-delay: 0.2s; }
+.delai-3 { transition-delay: 0.3s; }
+.delai-4 { transition-delay: 0.4s; }
+.delai-5 { transition-delay: 0.5s; }
+.delai-6 { transition-delay: 0.6s; }
+
+/* ================================================
+    ANIMATION HERO — ENTRÉE AU CHARGEMENT
+   
+   Quand la page se charge, les éléments du hero
+   apparaissent l'un après l'autre (pas besoin de scroll)
+   ================================================ */
+
+/* Animation de base : glisse vers le haut en apparaissant */
+@keyframes glisse-haut {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Chaque élément du hero a un délai différent
+   → effet "cascade" au chargement */
+.hero-salutation {
+  animation: glisse-haut 0.6s ease forwards;
+  animation-delay: 0.1s;
+  opacity: 0; /* Caché avant que l'animation démarre */
+}
+
+.hero-nom {
+  animation: glisse-haut 0.6s ease forwards;
+  animation-delay: 0.25s;
+  opacity: 0;
+}
+
+.hero-titre {
+  animation: glisse-haut 0.6s ease forwards;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+
+.hero-description {
+  animation: glisse-haut 0.6s ease forwards;
+  animation-delay: 0.55s;
+  opacity: 0;
+}
+
+.hero-boutons {
+  animation: glisse-haut 0.6s ease forwards;
+  animation-delay: 0.7s;
+  opacity: 0;
+}
+
+/* La photo arrive depuis la droite */
+@keyframes glisse-droite {
+  from {
+    opacity: 0;
+    transform: translateX(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.hero-image {
+  animation: glisse-droite 0.8s ease forwards;
+  animation-delay: 0.3s;
+  opacity: 0;
+}
+
+/* ================================================
+    NAVBAR — CHANGEMENT AU SCROLL
+   
+   Quand on défile vers le bas, la navbar devient
+   plus compacte. Le JS ajoute la classe ".scrolled"
+   ================================================ */
+
+#navbar.scrolled {
+  padding: 0;
+  border-bottom-color: rgba(0, 212, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.97);
+}
+
+#navbar.scrolled .nav-container {
+  padding-top: 0.8rem;
+  padding-bottom: 0.8rem;
+}
+
+/* Le logo rétrécit légèrement quand on défile */
+#navbar.scrolled .logo {
+  font-size: 1.6rem;
+}
+
+/* ================================================
+    LIGNE DE SCAN — EFFET TECH SUR LES CARTES
+   
+   Une ligne lumineuse qui passe sur les cartes
+   au survol (style scanner holographique)
+   ================================================ */
+
+ projet-carte {
+  position: relative; 
+}
+
+/* La ligne de scan — pseudo-élément invisible par défaut */
+.projet-carte::before {
+  content: '';
+  position: absolute;
+  top: -100%;           /* Commence au-dessus de la carte */
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--cyber-blue),
+    transparent
+  );
+  box-shadow: var(--cyber-glow);
+  transition: top 0.4s ease;
+  z-index: 1;
+}
+
+/* Au survol, la ligne descend à travers la carte */
+.projet-carte:hover::before {
+  top: 100%;
+}
+
+/* ================================================
+   E. PULSE — EFFET BATTEMENT SUR LE LOGO
+   ================================================ */
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 25px rgba(0, 212, 255, 0.9),
+                 0 0 50px rgba(0, 212, 255, 0.4);
+  }
+}
+ 
+.logo {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ================================================
+   F. COMPTEUR ANIMÉ — BARRE DE COMPÉTENCES
+   ================================================ */
+.barre.animee {
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ================================================
+   G. TEXTE GLITCH — EFFET GLITCH SUR LE NOM HERO
+   ================================================ */
+
+@keyframes glitch {
+  0%   { clip-path: inset(0 0 95% 0); transform: translate(-3px, 0); }
+  10%  { clip-path: inset(40% 0 50% 0); transform: translate(3px, 0); }
+  20%  { clip-path: inset(70% 0 20% 0); transform: translate(-2px, 0); }
+  30%  { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+  40%  { clip-path: inset(85% 0 5% 0); transform: translate(-3px, 0); }
+  50%  { clip-path: inset(0 0 0 0);  transform: translate(0, 0); }
+  100% { clip-path: inset(0 0 0 0);  transform: translate(0, 0); }
+}
+
+.hero-nom {
+  position: relative;
+  cursor: default;
+}
+
+/* Deux couches colorées qui se décalent */
+.hero-nom::before,
+.hero-nom::after {
+  content: attr(data-text); /* Reproduit le texte du HTML via data-text */
+  position: absolute;
+  inset: 0;
+  font-family: var(--police-titre);
+  font-size: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.hero-nom::before {
+  color: var(--cyber-blue);
+  left: 2px;
+}
+
+.hero-nom::after {
+  color: var(--couleur-secondaire, #ff0080);
+  left: -2px;
+}
+
+/* Au survol : les couches apparaissent et s'animent */
+.hero-nom:hover::before {
+  opacity: 0.8;
+  animation: glitch 0.4s steps(1) forwards;
+}
+
+.hero-nom:hover::after {
+  opacity: 0.6;
+  animation: glitch 0.4s steps(1) reverse forwards;
+}
+
+/* ================================================
+   H. LIGNE ACTIVE DANS LA NAV
+   ================================================ */
+.nav-links a.actif {
+  color: var(--cyber-blue);
+}
+ 
+.nav-links a.actif::after {
+  width: 100%;
+}
+
+/* ================================================
+   I. BOUTON "RETOUR EN HAUT" FLOTTANT
+   ================================================ */
+
+#btn-haut {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 45px;
+  height: 45px;
+  background: transparent;
+  border: 2px solid var(--cyber-blue);
+  color: var(--cyber-blue);
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition);
+  box-shadow: var(--cyber-glow);
+  /* Caché par défaut, le JS le montre */
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+}
+
+#btn-haut.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+#btn-haut:hover {
+  background: var(--cyber-blue);
+  color: var(--noir);
+  box-shadow: var(--cyber-glow-fort);
+}
