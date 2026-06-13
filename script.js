@@ -1,7 +1,3 @@
-
-/* ================================================
-   1. UTILITAIRES DE BASE
-   ================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
   // On initialise toutes nos fonctionnalités
@@ -18,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ================================================
-   2. NAVBAR
+    NAVBAR
    ================================================ */
 function initNavbar() {
 
@@ -29,6 +25,7 @@ function initNavbar() {
   const tousLiens = document.querySelectorAll('.nav-links a');
 
 
+  /* ---  Navbar compacte au scroll --- */
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
       navbar.classList.add('scrolled');
@@ -37,6 +34,8 @@ function initNavbar() {
     }
   });
 
+
+  /* ---  Menu burger (mobile) --- */
   burger.addEventListener('click', () => {
     // classList.toggle = ajoute si absent, retire si présent
     navLinks.classList.toggle('ouvert');
@@ -72,6 +71,8 @@ function initNavbar() {
   // On observe quelles sections sont visibles à l'écran
   const sections = document.querySelectorAll('section[id]');
 
+  // IntersectionObserver = outil natif du navigateur qui
+  // détecte quand un élément entre/sort de l'écran.
   const observateurNav = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -89,7 +90,8 @@ function initNavbar() {
       });
     },
     {
-     
+      // rootMargin : on considère qu'une section est "active"
+      // quand elle occupe le tiers central de l'écran
       rootMargin: '-40% 0px -40% 0px'
     }
   );
@@ -99,7 +101,7 @@ function initNavbar() {
 
 
 /* ================================================
-   3. SCROLL REVEAL
+    SCROLL REVEAL
    ================================================ */
 function initScrollReveal() {
 
@@ -132,7 +134,7 @@ function initScrollReveal() {
 
 
 /* ================================================
-   4. BARRES DE COMPÉTENCES ANIMÉES
+    BARRES DE COMPÉTENCES ANIMÉES
    ================================================ */
 function initBarresCompetences() {
 
@@ -143,10 +145,12 @@ function initBarresCompetences() {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
 
+          // On anime uniquement la barre dans la carte qui vient d'entrer
           const barre = entry.target.querySelector('.barre');
           if (!barre) return;
 
           const niveau = barre.getAttribute('data-niveau');
+           
           barre.style.transition = 'none';
           barre.style.width = '0%';
 
@@ -168,7 +172,7 @@ function initBarresCompetences() {
   if (cartes.length > 0) {
     cartes.forEach(carte => observateur.observe(carte));
   } else {
-     
+    // Fallback si les cartes n'existent pas
     const section = document.getElementById('competences');
     if (section) observateur.observe(section);
   }
@@ -176,19 +180,19 @@ function initBarresCompetences() {
 
 
 /* ================================================
-   5. TEXTE ANIMÉ — EFFET MACHINE À ÉCRIRE
+    TEXTE ANIMÉ — EFFET MACHINE À ÉCRIRE
    ================================================ */
 function initTexteAnime() {
 
   const element = document.getElementById('texte-anime');
-  if (!element) return; 
+  if (!element) return; // Sécurité : si l'élément n'existe pas, on arrête
 
-  // Liste des textes à afficher 
+  // Liste des textes à afficher — personnalise selon ton profil !
   const textes = [
     'Développeur Web',
+    'Développeur de site web',
     'Créateur d\'interfaces',
-    'Créateur de sites web',
-    'Créateur d\'application web',
+    'Développeur d\'application web',
     'Passionné du code'
   ];
 
@@ -238,7 +242,7 @@ function initTexteAnime() {
 
 
 /* ================================================
-   6. MODALES DES PROJETS
+    MODALES DES PROJETS
    ================================================ */
 function ouvrirModale(id) {
   const modale = document.getElementById(id);
@@ -275,61 +279,94 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ================================================
-   7. FORMULAIRE DE CONTACT
+    FORMULAIRE DE CONTACT
    ================================================ */
 function initFormulaire() {
 
   const formulaire = document.getElementById('contactForm');
   if (!formulaire) return;
 
-  // Crée et ajoute le div de succès dans le formulaire
+  // Crée le message de succès
   const msgSucces = document.createElement('div');
   msgSucces.classList.add('form-succes');
-  msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
   formulaire.appendChild(msgSucces);
 
   formulaire.addEventListener('submit', (e) => {
-    // e.preventDefault() = annule le rechargement de la page
     e.preventDefault();
 
     // Récupère les valeurs des champs
     const nom     = document.getElementById('nom').value.trim();
     const email   = document.getElementById('email').value.trim();
+    const sujet   = document.getElementById('sujet').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    // Validation basique — tous les champs doivent être remplis
-    if (!nom || !email || !message) {
-      alert('Merci de remplir tous les champs !');
+    // Validation : tous les champs doivent être remplis
+    if (!nom || !email || !sujet || !message) {
+      afficherErreur(msgSucces, '⚠️ Merci de remplir tous les champs !');
       return;
     }
 
-    // Animation du bouton pendant "l'envoi"
+    // Validation : format email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      afficherErreur(msgSucces, '⚠️ Adresse email invalide.');
+      return;
+    }
+
+    // Animation du bouton pendant l'envoi
     const bouton = formulaire.querySelector('button[type="submit"]');
     bouton.textContent = 'Envoi en cours...';
     bouton.disabled = true;
 
-    // Simule un délai réseau de 1.5s
-    setTimeout(() => {
-      // Réinitialise le formulaire
-      formulaire.reset();
-      bouton.textContent = 'Envoyer le message ✉️';
-      bouton.disabled = false;
+    // Paramètres envoyés à EmailJS
+    const parametres = {
+      from_name  : nom,
+      from_email : email,
+      subject    : sujet,
+      message    : message,
+    };
 
-      // Affiche le message de succès
-      msgSucces.classList.add('visible');
+    emailjs.send("service_d43qij5", "template_lstg2eb", parametres)
 
-      // Cache le message après 4 secondes
-      setTimeout(() => {
-        msgSucces.classList.remove('visible');
-      }, 4000);
+      .then(() => {
+        // ✅ Email envoyé avec succès
+        formulaire.reset();
+        bouton.textContent = 'Envoyer le message ✉️';
+        bouton.disabled = false;
 
-    }, 1500);
+        msgSucces.style.background = 'rgba(0, 212, 255, 0.08)';
+        msgSucces.style.borderColor = 'var(--cyber-blue)';
+        msgSucces.style.color = 'var(--cyber-blue)';
+        msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
+        msgSucces.classList.add('visible');
+
+        // Cache le message après 5 secondes
+        setTimeout(() => msgSucces.classList.remove('visible'), 5000);
+      })
+
+      .catch((erreur) => {
+        // ❌ Échec de l'envoi
+        console.error('EmailJS erreur :', erreur);
+        bouton.textContent = 'Envoyer le message ✉️';
+        bouton.disabled = false;
+        afficherErreur(msgSucces, '❌ Échec de l'envoi. Réessaie ou contacte-moi directement.');
+      });
   });
+}
+
+// Fonction utilitaire pour afficher un message d'erreur
+function afficherErreur(element, texte) {
+  element.style.background = 'rgba(255, 50, 50, 0.08)';
+  element.style.borderColor = '#ff3232';
+  element.style.color = '#ff6464';
+  element.textContent = texte;
+  element.classList.add('visible');
+  setTimeout(() => element.classList.remove('visible'), 4000);
 }
 
 
 /* ================================================
-   8. BOUTON RETOUR EN HAUT
+    BOUTON RETOUR EN HAUT
    ================================================ */
 function initBoutonHaut() {
 
