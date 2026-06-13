@@ -1,27 +1,40 @@
 /* ================================================
-    IMPORT DES POLICES GOOGLE FONTS
+   PORTFOLIO - FEUILLE DE STYLE COMPLÈTE
+   Thème : Tech / Futuriste
+   Palette : Noir #000000 | Blanc #FFFFFF | Cyber Blue #00D4FF
+   Polices : Bebas Neue | Rajdhani | Poppins
    ================================================ */
 
+
+/* ================================================
+   1. IMPORT DES POLICES GOOGLE FONTS
+   ================================================ */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
 
-:root{
-    /* === COULEURS PRINCIPALES === */
-    --noir: #000000;
-    --blanc: #FFFFFF;
-    --cyber-blue: #00D4FF;
-    /* Gris foncé : pour les surfaces, cartes, sections alternées */
-    --gris-fonce:     #0a0a0a;
-  /* Gris moyen : pour les bordures, séparateurs */
-    --gris-moyen:     #1a1a1a;
-  /* Gris clair : pour le texte secondaire */
-    --gris-clair:     #888888;
-  /* Cyber Blue atténué : pour les fonds subtils */
-    --cyber-blue-dim: rgba(0, 212, 255, 0.08);
-  /* Cyber Blue glow : pour les ombres lumineuses */
-    --cyber-glow:     0 0 20px rgba(0, 212, 255, 0.4);
-    --cyber-glow-fort:0 0 40px rgba(0, 212, 255, 0.6);
 
-    /* === POLICES === */
+/* ================================================
+   2. VARIABLES CSS
+   ================================================ */
+:root {
+  /* === COULEURS PRINCIPALES === */
+  --noir:           #000000;
+  --blanc:          #FFFFFF;
+  --cyber-blue:     #00D4FF;
+
+  /* === COULEURS COMPLÉMENTAIRES (harmonie avec la palette) === */
+  /* Gris foncé : pour les surfaces, cartes, sections alternées */
+  --gris-fonce:     #0a0a0a;
+  /* Gris moyen : pour les bordures, séparateurs */
+  --gris-moyen:     #1a1a1a;
+  /* Gris clair : pour le texte secondaire */
+  --gris-clair:     #888888;
+  /* Cyber Blue atténué : pour les fonds subtils */
+  --cyber-blue-dim: rgba(0, 212, 255, 0.08);
+  /* Cyber Blue glow : pour les ombres lumineuses */
+  --cyber-glow:     0 0 20px rgba(0, 212, 255, 0.4);
+  --cyber-glow-fort:0 0 40px rgba(0, 212, 255, 0.6);
+
+  /* === POLICES === */
   --police-titre:   'Bebas Neue', sans-serif;    /* Titres, logo, headlines */
   --police-sous:    'Rajdhani', sans-serif;       /* Sous-titres, nav, labels */
   --police-corps:   'Poppins', sans-serif;        /* Texte courant */
@@ -48,34 +61,34 @@
   --transition:     0.3s ease;
 }
 
+
 /* ================================================
-    RESET CSS
+   3. RESET CSS
    ================================================ */
-
-*,*::before, *::after{
-    box-sizing: border-box;
-    margin:0;
-    padding: 0;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-img{
-    max-width: 100%;
-    display: block;
+img {
+  max-width: 100%;
+  display: block;
 }
 
-ul{ list-style: none; }
+ul { list-style: none; }
 
 a {
-    text-decoration:none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
-/* ================================================
-    STYLES GLOBAUX
-   ================================================ */
 
+/* ================================================
+   4. STYLES GLOBAUX
+   ================================================ */
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -97,15 +110,16 @@ body {
   border-radius: 3px;
 }
 
-::selection{
-    background: var(--cyber-blue);
-    color: var(--noir);
+/* Sélection de texte en cyber blue */
+::selection {
+  background: var(--cyber-blue);
+  color: var(--noir);
 }
 
 .section {
-    padding: var(--espace-section) var(--espace-moyen);
-    max-width: 1100px;
-    margin: 0 auto;
+  padding: var(--espace-section) var(--espace-moyen);
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* Sections alternées avec fond légèrement différent */
@@ -114,32 +128,34 @@ body {
   max-width: 100%;
   padding: var(--espace-section) var(--espace-moyen);
 }
- 
+
 .section-grise > * {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
 
+
 /* ================================================
-    TITRES DE SECTION
+   5. TITRES DE SECTION
    ================================================ */
 .section-titre {
-    text-align: center;
-    margin-bottom: var(--espace-grand);
+  text-align: center;
+  margin-bottom: var(--espace-grand);
 }
 
 .section-titre h2 {
-    font-family: var(--police-titre);
-    font-size: var(--texte-titre);
-    font-weight: 400; 
-    color: var(--blanc);
-    letter-spacing: 4px; /* Espacement des lettres = style futuriste */
-    position: relative;
-    display: inline-block;
-    padding-bottom: var(--espace-normal);
+  font-family: var(--police-titre);
+  font-size: var(--texte-titre);
+  font-weight: 400;    /* Bebas Neue n'a qu'un seul poids */
+  color: var(--blanc);
+  letter-spacing: 4px; /* Espacement des lettres = style futuriste */
+  position: relative;
+  display: inline-block;
+  padding-bottom: var(--espace-normal);
 }
 
+/* Ligne cyber blue sous le titre */
 .section-titre h2::after {
   content: '';
   position: absolute;
@@ -151,7 +167,7 @@ body {
   background: var(--cyber-blue);
   box-shadow: var(--cyber-glow); /* Effet lumineux */
 }
- 
+
 .section-titre p {
   font-family: var(--police-sous);
   color: var(--gris-clair);
@@ -160,6 +176,7 @@ body {
   text-transform: uppercase;
   margin-top: var(--espace-normal);
 }
+
 
 /* ================================================
    6. BOUTONS
@@ -208,8 +225,9 @@ body {
   box-shadow: var(--cyber-glow);
 }
 
+
 /* ================================================
-    BARRE DE NAVIGATION
+   7. BARRE DE NAVIGATION
    ================================================ */
 #navbar {
   position: fixed;
@@ -303,10 +321,10 @@ body {
   transition: all var(--transition);
 }
 
-/* ================================================
-    SECTION HERO
-   ================================================ */
 
+/* ================================================
+   8. SECTION HERO
+   ================================================ */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -319,20 +337,21 @@ body {
   position: relative;
 }
 
+/* Grille de fond décorative (style tech) */
 .hero::before {
-    content:'';
-    position: fixed;
-    inset: 0;
-    background-image:
-    linear-gradient(0, 212, 255, 0.03, transparent 1px),
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 212, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 212, 255, 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
-    pointer-events: none; /* Ne bloque pas les clics */
-    z-index: -1;
+  background-size: 50px 50px;
+  pointer-events: none; /* Ne bloque pas les clics */
+  z-index: -1;
 }
 
 .hero-content {
-    flex: 1;
+  flex: 1;
 }
 
 .hero-salutation {
@@ -377,8 +396,8 @@ body {
 }
 
 @keyframes clignote {
-    0%, 100% {border-color: var(--cyber-blue); }
-    50%      { border-color: transparent; }
+  0%, 100% { border-color: var(--cyber-blue); }
+  50%       { border-color: transparent; }
 }
 
 .hero-description {
@@ -423,16 +442,15 @@ body {
   transition: filter var(--transition), transform var(--transition);
 }
 
-/* Remet la saturation lorsque passe le curseur sur la photo */
 .hero-image img:hover {
   filter: grayscale(0%);
   transform: scale(1.02);
 }
 
-/* ================================================
-    SECTION À PROPOS
-   ================================================ */
 
+/* ================================================
+   9. SECTION À PROPOS
+   ================================================ */
 .apropos-contenu {
   max-width: 700px;
   margin: 0 auto;
@@ -478,10 +496,10 @@ body {
   margin-bottom: 2px;
 }
 
+
 /* ================================================
    10. SECTION COMPÉTENCES
    ================================================ */
-
 .competences-grille {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -545,10 +563,10 @@ body {
   letter-spacing: 1px;
 }
 
-/* ================================================
-    SECTION PROJETS
-   ================================================ */
 
+/* ================================================
+   11. SECTION PROJETS
+   ================================================ */
 .projets-grille {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -657,10 +675,10 @@ body {
   text-transform: uppercase;
 }
 
+
 /* ================================================
    12. MODALES
    ================================================ */
-
 .modale {
   display: none;
   position: fixed;
@@ -674,14 +692,14 @@ body {
 .modale.active {
   display: flex;
 }
- 
+
 .modale-fond {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);
 }
- 
+
 .modale-contenu {
   position: relative;
   background: var(--gris-moyen);
@@ -790,10 +808,10 @@ body {
   flex-wrap: wrap;
 }
 
+
 /* ================================================
    13. SECTION CONTACT
    ================================================ */
-
 .contact-contenu {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -954,10 +972,10 @@ body {
   display: block;
 }
 
+
 /* ================================================
    14. FOOTER
    ================================================ */
-
 footer {
   background: var(--gris-moyen);
   border-top: 1px solid rgba(0, 212, 255, 0.2);
@@ -982,17 +1000,17 @@ footer a:hover {
   text-shadow: var(--cyber-glow);
 }
 
+
 /* ================================================
    15. RESPONSIVE — MOBILE
    ================================================ */
-
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
     text-align: center;
     padding-top: calc(80px + var(--espace-moyen));
   }
- 
+
   .hero-boutons { justify-content: center; }
   .hero-description { margin: 0 auto var(--espace-moyen); }
   .hero-image { flex: none; width: 260px; }
@@ -1001,17 +1019,17 @@ footer a:hover {
   .apropos-infos { grid-template-columns: 1fr; }
   .modale-infos { grid-template-columns: 1fr; }
 }
- 
+
 @media (max-width: 600px) {
   :root {
     --texte-hero:  3rem;
     --texte-titre: 2.2rem;
   }
- 
+
   .section, .section-grise {
     padding: var(--espace-grand) var(--espace-normal);
   }
- 
+
   .nav-links {
     display: none;
     position: absolute;
@@ -1024,7 +1042,7 @@ footer a:hover {
     padding: var(--espace-normal);
     gap: var(--espace-normal);
   }
- 
+
   .nav-links.ouvert { display: flex; }
   .menu-burger { display: flex; }
   .projets-grille { grid-template-columns: 1fr; }
@@ -1032,17 +1050,25 @@ footer a:hover {
   .modale-boutons { flex-direction: column; }
 }
 
+
 /* ================================================
    ÉTAPE 4 — ANIMATIONS CSS
+   On ajoute ces règles à la suite du fichier
    ================================================ */
 
 
-  /* ================================================
-    ANIMATIONS AU SCROLL — SCROLL REVEAL
+/* ================================================
+   A. ANIMATIONS AU SCROLL — SCROLL REVEAL
+   
+   Le principe :
+   1. On cache tous les éléments animables avec
+      la classe ".reveal" (opacity 0, déplacé vers le bas)
+   2. Quand l'élément entre dans l'écran, le JS lui
+      ajoute la classe ".visible"
+   3. Le CSS anime alors l'apparition
    ================================================ */
 
 /* État INITIAL — élément caché, 30px plus bas */
-
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -1082,7 +1108,6 @@ footer a:hover {
 /* Délais en cascade — les éléments d'une grille
    apparaissent les uns après les autres */
 /* Usage : <div class="reveal delai-1"> */
- 
 .delai-1 { transition-delay: 0.1s; }
 .delai-2 { transition-delay: 0.2s; }
 .delai-3 { transition-delay: 0.3s; }
@@ -1090,8 +1115,9 @@ footer a:hover {
 .delai-5 { transition-delay: 0.5s; }
 .delai-6 { transition-delay: 0.6s; }
 
+
 /* ================================================
-    ANIMATION HERO — ENTRÉE AU CHARGEMENT
+   B. ANIMATION HERO — ENTRÉE AU CHARGEMENT
    
    Quand la page se charge, les éléments du hero
    apparaissent l'un après l'autre (pas besoin de scroll)
@@ -1159,13 +1185,13 @@ footer a:hover {
   opacity: 0;
 }
 
+
 /* ================================================
-    NAVBAR — CHANGEMENT AU SCROLL
+   C. NAVBAR — CHANGEMENT AU SCROLL
    
    Quand on défile vers le bas, la navbar devient
    plus compacte. Le JS ajoute la classe ".scrolled"
    ================================================ */
-
 #navbar.scrolled {
   padding: 0;
   border-bottom-color: rgba(0, 212, 255, 0.4);
@@ -1182,15 +1208,15 @@ footer a:hover {
   font-size: 1.6rem;
 }
 
+
 /* ================================================
-    LIGNE DE SCAN — EFFET TECH SUR LES CARTES
+   D. LIGNE DE SCAN — EFFET TECH SUR LES CARTES
    
    Une ligne lumineuse qui passe sur les cartes
    au survol (style scanner holographique)
    ================================================ */
-
- projet-carte {
-  position: relative; 
+.projet-carte {
+  position: relative; /* Déjà défini, on s'assure juste */
 }
 
 /* La ligne de scan — pseudo-élément invisible par défaut */
@@ -1217,10 +1243,13 @@ footer a:hover {
   top: 100%;
 }
 
+
 /* ================================================
    E. PULSE — EFFET BATTEMENT SUR LE LOGO
+   
+   Le logo dans la navbar pulse doucement
+   pour attirer l'attention
    ================================================ */
-
 @keyframes pulse-glow {
   0%, 100% {
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
@@ -1230,22 +1259,37 @@ footer a:hover {
                  0 0 50px rgba(0, 212, 255, 0.4);
   }
 }
- 
+
 .logo {
   animation: pulse-glow 3s ease-in-out infinite;
 }
 
+
 /* ================================================
    F. COMPTEUR ANIMÉ — BARRE DE COMPÉTENCES
+   
+   Les barres de compétences se remplissent
+   avec une animation fluide quand elles
+   entrent dans l'écran (déclenché par le JS)
    ================================================ */
+
+/* Quand la section compétences est visible,
+   le JS ajoute la classe "animee" aux barres */
 .barre.animee {
+  /* La largeur finale est définie inline par le JS :
+     style="width: 85%" par exemple */
   transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* cubic-bezier = courbe d'accélération personnalisée
+     → démarre vite, ralentit à la fin (effet naturel) */
 }
+
 
 /* ================================================
    G. TEXTE GLITCH — EFFET GLITCH SUR LE NOM HERO
+   
+   Au survol du nom, un effet de "glitch" (décalage
+   numérique) apparaît — signature du style cyberpunk
    ================================================ */
-
 @keyframes glitch {
   0%   { clip-path: inset(0 0 95% 0); transform: translate(-3px, 0); }
   10%  { clip-path: inset(40% 0 50% 0); transform: translate(3px, 0); }
@@ -1296,21 +1340,28 @@ footer a:hover {
   animation: glitch 0.4s steps(1) reverse forwards;
 }
 
+
 /* ================================================
    H. LIGNE ACTIVE DANS LA NAV
+   
+   Le lien de la section actuellement visible
+   est mis en évidence (le JS ajoute .actif)
    ================================================ */
 .nav-links a.actif {
   color: var(--cyber-blue);
 }
- 
+
 .nav-links a.actif::after {
   width: 100%;
 }
 
+
 /* ================================================
    I. BOUTON "RETOUR EN HAUT" FLOTTANT
+   
+   Un bouton apparaît en bas à droite
+   quand on a défilé vers le bas
    ================================================ */
-
 #btn-haut {
   position: fixed;
   bottom: 2rem;
