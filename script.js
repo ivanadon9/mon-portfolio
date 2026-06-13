@@ -1,3 +1,26 @@
+/* ================================================
+   PORTFOLIO — SCRIPT JAVASCRIPT COMPLET
+   
+   PLAN DU FICHIER :
+   1. Utilitaires de base
+   2. Navbar (scroll + menu burger + lien actif)
+   3. Scroll Reveal (apparition des éléments)
+   4. Barres de compétences animées
+   5. Texte animé (effet machine à écrire)
+   6. Modales des projets
+   7. Formulaire de contact
+   8. Bouton retour en haut
+   ================================================ */
+
+
+/* ================================================
+   1. UTILITAIRES DE BASE
+   
+   "DOMContentLoaded" = on attend que tout le HTML
+   soit chargé avant d'exécuter notre code.
+   Sans ça, le JS essaierait de manipuler des
+   éléments qui n'existent pas encore → erreurs.
+   ================================================ */
 document.addEventListener('DOMContentLoaded', () => {
 
   // On initialise toutes nos fonctionnalités
@@ -14,28 +37,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 /* ================================================
-    NAVBAR
+   2. NAVBAR
+   
+   Trois comportements :
+   a) Classe "scrolled" au défilement
+   b) Menu burger sur mobile
+   c) Lien actif selon la section visible
    ================================================ */
 function initNavbar() {
 
   // On récupère les éléments du DOM
+  // document.getElementById('...') = trouve un élément par son id
   const navbar    = document.getElementById('navbar');
   const burger    = document.getElementById('menuBurger');
   const navLinks  = document.querySelector('.nav-links');
   const tousLiens = document.querySelectorAll('.nav-links a');
+  // querySelectorAll = trouve TOUS les éléments qui matchent
+  // querySelector   = trouve seulement le PREMIER
 
 
-  /* ---  Navbar compacte au scroll --- */
+  /* --- a) Navbar compacte au scroll --- */
   window.addEventListener('scroll', () => {
+    // window.scrollY = combien de pixels on a défilé
     if (window.scrollY > 80) {
       navbar.classList.add('scrolled');
+      // classList.add('scrolled') = ajoute la classe CSS "scrolled"
+      // C'est comme écrire class="... scrolled" dans le HTML
     } else {
       navbar.classList.remove('scrolled');
     }
   });
 
 
-  /* ---  Menu burger (mobile) --- */
+  /* --- b) Menu burger (mobile) --- */
   burger.addEventListener('click', () => {
     // classList.toggle = ajoute si absent, retire si présent
     navLinks.classList.toggle('ouvert');
@@ -67,12 +101,13 @@ function initNavbar() {
   });
 
 
-  /* ---  Lien actif selon la section visible --- */
+  /* --- c) Lien actif selon la section visible --- */
   // On observe quelles sections sont visibles à l'écran
   const sections = document.querySelectorAll('section[id]');
 
   // IntersectionObserver = outil natif du navigateur qui
   // détecte quand un élément entre/sort de l'écran.
+  // Bien plus performant qu'écouter le scroll manuellement.
   const observateurNav = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
@@ -82,6 +117,9 @@ function initNavbar() {
           // Retirer la classe "actif" de tous les liens
           tousLiens.forEach(l => l.classList.remove('actif'));
 
+          // Ajouter "actif" au lien qui correspond à cette section
+          // entry.target.id = l'id de la section visible (ex: "projets")
+          // On cherche le lien href="#projets"
           const lienActif = document.querySelector(
             `.nav-links a[href="#${entry.target.id}"]`
           );
@@ -101,7 +139,13 @@ function initNavbar() {
 
 
 /* ================================================
-    SCROLL REVEAL
+   3. SCROLL REVEAL
+   
+   Principe :
+   - Tous les éléments avec la classe "reveal"
+     sont cachés (opacity:0) dans le CSS
+   - Quand ils entrent dans l'écran, on leur
+     ajoute la classe "visible" → ils apparaissent
    ================================================ */
 function initScrollReveal() {
 
@@ -118,6 +162,7 @@ function initScrollReveal() {
           entry.target.classList.add('visible');
 
           // Une fois animé, on arrête de l'observer
+          // (inutile de continuer à surveiller)
           observateur.unobserve(entry.target);
         }
       });
@@ -134,7 +179,12 @@ function initScrollReveal() {
 
 
 /* ================================================
-    BARRES DE COMPÉTENCES ANIMÉES
+   4. BARRES DE COMPÉTENCES ANIMÉES
+   
+   Les barres se remplissent quand la section
+   compétences entre dans l'écran.
+   La largeur finale vient du data-niveau du HTML :
+   <div class="barre" data-niveau="85">
    ================================================ */
 function initBarresCompetences() {
 
@@ -146,11 +196,17 @@ function initBarresCompetences() {
         if (entry.isIntersecting) {
 
           // On anime uniquement la barre dans la carte qui vient d'entrer
+          // plutôt que TOUTES les barres en même temps
           const barre = entry.target.querySelector('.barre');
           if (!barre) return;
 
           const niveau = barre.getAttribute('data-niveau');
-           
+
+          // FIX BUG 3 : on force width:0 puis on attend 2 cycles
+          // de rendu (double requestAnimationFrame) pour que le
+          // navigateur "voie" l'état initial avant d'animer.
+          // Sans ce délai, le navigateur regroupe les 2 changements
+          // dans le même cycle et n'anime rien.
           barre.style.transition = 'none';
           barre.style.width = '0%';
 
@@ -165,9 +221,14 @@ function initBarresCompetences() {
         }
       });
     },
+    // FIX BUG 2 : threshold:0.2 = se déclenche dès que 20% de
+    // la CARTE est visible. On observe chaque carte individuellement
+    // plutôt que toute la section, bien plus fiable sur mobile.
     { threshold: 0.2 }
   );
 
+  // FIX BUG 1 : on observe chaque carte de compétence
+  // individuellement — pas la section entière
   const cartes = document.querySelectorAll('.competence-carte');
   if (cartes.length > 0) {
     cartes.forEach(carte => observateur.observe(carte));
@@ -180,7 +241,11 @@ function initBarresCompetences() {
 
 
 /* ================================================
-    TEXTE ANIMÉ — EFFET MACHINE À ÉCRIRE
+   5. TEXTE ANIMÉ — EFFET MACHINE À ÉCRIRE
+   
+   Le span #texte-anime affiche plusieurs métiers
+   les uns après les autres, comme si quelqu'un
+   les tapait et les effaçait en direct.
    ================================================ */
 function initTexteAnime() {
 
@@ -190,9 +255,8 @@ function initTexteAnime() {
   // Liste des textes à afficher — personnalise selon ton profil !
   const textes = [
     'Développeur Web',
-    'Développeur de site web',
+    'Intégrateur HTML/CSS',
     'Créateur d\'interfaces',
-    'Développeur d\'application web',
     'Passionné du code'
   ];
 
@@ -242,7 +306,15 @@ function initTexteAnime() {
 
 
 /* ================================================
-    MODALES DES PROJETS
+   6. MODALES DES PROJETS
+   
+   ouvrirModale(id) → affiche la modale
+   fermerModale(id) → cache la modale
+   
+   Ces fonctions sont appelées directement
+   depuis le HTML : onclick="ouvrirModale('projet1')"
+   Donc on les déclare sans "const" pour qu'elles
+   soient accessibles globalement.
    ================================================ */
 function ouvrirModale(id) {
   const modale = document.getElementById(id);
@@ -279,94 +351,72 @@ document.addEventListener('keydown', (e) => {
 
 
 /* ================================================
-    FORMULAIRE DE CONTACT
+   7. FORMULAIRE DE CONTACT
+   
+   On intercepte la soumission du formulaire
+   pour afficher un message de succès stylisé
+   au lieu du comportement par défaut
+   (qui rechargerait la page).
    ================================================ */
 function initFormulaire() {
 
   const formulaire = document.getElementById('contactForm');
   if (!formulaire) return;
 
-  // Crée le message de succès
+  // Crée et ajoute le div de succès dans le formulaire
   const msgSucces = document.createElement('div');
   msgSucces.classList.add('form-succes');
+  msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
   formulaire.appendChild(msgSucces);
 
   formulaire.addEventListener('submit', (e) => {
+    // e.preventDefault() = annule le rechargement de la page
     e.preventDefault();
 
     // Récupère les valeurs des champs
     const nom     = document.getElementById('nom').value.trim();
     const email   = document.getElementById('email').value.trim();
-    const sujet   = document.getElementById('sujet').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    // Validation : tous les champs doivent être remplis
-    if (!nom || !email || !sujet || !message) {
-      afficherErreur(msgSucces, '⚠️ Merci de remplir tous les champs !');
+    // Validation basique — tous les champs doivent être remplis
+    if (!nom || !email || !message) {
+      alert('Merci de remplir tous les champs !');
       return;
     }
 
-    // Validation : format email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      afficherErreur(msgSucces, '⚠️ Adresse email invalide.');
-      return;
-    }
+    // Ici tu pourras plus tard connecter un vrai service d'envoi
+    // (ex: EmailJS, Formspree...). Pour l'instant on simule.
 
-    // Animation du bouton pendant l'envoi
+    // Animation du bouton pendant "l'envoi"
     const bouton = formulaire.querySelector('button[type="submit"]');
     bouton.textContent = 'Envoi en cours...';
     bouton.disabled = true;
 
-    // Paramètres envoyés à EmailJS
-    const parametres = {
-      from_name  : nom,
-      from_email : email,
-      subject    : sujet,
-      message    : message,
-    };
+    // Simule un délai réseau de 1.5s
+    setTimeout(() => {
+      // Réinitialise le formulaire
+      formulaire.reset();
+      bouton.textContent = 'Envoyer le message ✉️';
+      bouton.disabled = false;
 
-    emailjs.send("service_d43qij5", "template_lstg2eb", parametres)
+      // Affiche le message de succès
+      msgSucces.classList.add('visible');
 
-      .then(() => {
-        // ✅ Email envoyé avec succès
-        formulaire.reset();
-        bouton.textContent = 'Envoyer le message ✉️';
-        bouton.disabled = false;
+      // Cache le message après 4 secondes
+      setTimeout(() => {
+        msgSucces.classList.remove('visible');
+      }, 4000);
 
-        msgSucces.style.background = 'rgba(0, 212, 255, 0.08)';
-        msgSucces.style.borderColor = 'var(--cyber-blue)';
-        msgSucces.style.color = 'var(--cyber-blue)';
-        msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
-        msgSucces.classList.add('visible');
-
-        // Cache le message après 5 secondes
-        setTimeout(() => msgSucces.classList.remove('visible'), 5000);
-      })
-
-      .catch((erreur) => {
-        // ❌ Échec de l'envoi
-        console.error('EmailJS erreur :', erreur);
-        bouton.textContent = 'Envoyer le message ✉️';
-        bouton.disabled = false;
-        afficherErreur(msgSucces, '❌ Échec de l'envoi. Réessaie ou contacte-moi directement.');
-      });
+    }, 1500);
   });
-}
-
-// Fonction utilitaire pour afficher un message d'erreur
-function afficherErreur(element, texte) {
-  element.style.background = 'rgba(255, 50, 50, 0.08)';
-  element.style.borderColor = '#ff3232';
-  element.style.color = '#ff6464';
-  element.textContent = texte;
-  element.classList.add('visible');
-  setTimeout(() => element.classList.remove('visible'), 4000);
 }
 
 
 /* ================================================
-    BOUTON RETOUR EN HAUT
+   8. BOUTON RETOUR EN HAUT
+   
+   - Apparaît après avoir défilé de 400px
+   - Ramène en douceur en haut de la page au clic
    ================================================ */
 function initBoutonHaut() {
 
