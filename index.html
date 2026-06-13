@@ -2,28 +2,15 @@
 <html lang="fr">
 
 <head>
-  <!-- ============================================
-       HEAD = tout ce que le visiteur NE VOIT PAS
-       mais qui est important pour le navigateur
-  ============================================ -->
-
-  <!-- Indique au navigateur que le fichier est en UTF-8 (pour les accents) -->
   <meta charset="UTF-8">
-
-  <!-- Rend le site responsive (adapté au mobile) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Le titre qui apparaît dans l'onglet du navigateur -->
   <title>Mon Portfolio</title>
-
-  <!-- On relie notre fichier CSS (il n'existe pas encore, on le créera à l'étape 3) -->
   <link rel="stylesheet" href="style.css">
   <!-- EmailJS : service d'envoi d'email sans serveur -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>
     // Initialise EmailJS avec ta clé publique
-    // Remplace "TA_CLE_PUBLIQUE" par ta vraie clé (Account → API Keys)
-    emailjs.init("TA_CLE_PUBLIQUE");
+    emailjs.init("DmGCmDxCOWpvysWN8");
   </script>
 
   <!-- Polices Google Fonts : Bebas Neue (titres) | Rajdhani (sous-titres) | Poppins (corps) -->
@@ -31,23 +18,15 @@
 </head>
 
 <body>
-  <!-- ============================================
-       BODY = tout ce que le visiteur VOIT
-  ============================================ -->
-
-
   <!-- ==============================
-       1. BARRE DE NAVIGATION
-       C'est le menu en haut de page
+        BARRE DE NAVIGATION
   ============================== -->
   <nav id="navbar">
     <div class="nav-container">
 
-      <!-- Ton logo / ton nom (cliquable pour revenir en haut) -->
-      <a href="#accueil" class="logo">John Doe</a>
+      <a href="#accueil" class="logo">Ivan Adon</a>
 
       <!-- Les liens de navigation -->
-      <!-- Le # devant chaque mot pointe vers une section de la page -->
       <ul class="nav-links">
         <li><a href="#accueil">Accueil</a></li>
         <li><a href="#apropos">À propos</a></li>
@@ -57,7 +36,6 @@
       </ul>
 
       <!-- Bouton menu burger (visible uniquement sur mobile) -->
-      <!-- On le cachera sur desktop avec le CSS -->
       <button class="menu-burger" id="menuBurger">
         <span></span>
         <span></span>
@@ -69,26 +47,18 @@
 
 
   <!-- ==============================
-       2. SECTION ACCUEIL (HERO)
-       La première chose qu'on voit
+        SECTION ACCUEIL (HERO)
   ============================== -->
-  <!-- id="accueil" correspond au lien href="#accueil" dans la nav -->
   <section id="accueil" class="hero">
 
     <div class="hero-content">
-      <!-- Petit texte au-dessus -->
       <p class="hero-salutation">Bonjour, je suis</p>
+      <h1 class="hero-nom" data-text="Ivan Adon">Ivan Adon</h1>
 
-      <!-- Ton nom en grand -->
-      <h1 class="hero-nom" data-text="John Doe">John Doe</h1>
-
-      <!-- Ton titre / métier -->
-      <!-- La partie dans <span> sera animée en JS (étape 6) -->
       <h2 class="hero-titre">
-        Je suis <span id="texte-anime">Développeur Web</span>
+       <span id="texte-anime">Développeur Web</span>
       </h2>
 
-      <!-- Un court texte de présentation -->
       <p class="hero-description">
         Passionné par le web et les nouvelles technologies,
         je crée des expériences numériques modernes et intuitives.
@@ -103,19 +73,16 @@
 
     <!-- Photo de profil -->
     <div class="hero-image">
-      <!-- Remplace "images/photo.jpg" par ta vraie photo -->
-      <img src="images/photo.jpg" alt="Ma photo de profil">
+      <img src="images/photo de Ivan.jpg" alt="Photo de profil de Ivan Adon">
     </div>
 
   </section>
 
 
   <!-- ==============================
-       3. SECTION À PROPOS
+        SECTION À PROPOS
   ============================== -->
   <section id="apropos" class="section">
-
-    <!-- Titre de section (même structure pour toutes les sections) -->
     <div class="section-titre reveal">
       <h2>À Propos</h2>
       <p>Qui suis-je ?</p>
@@ -127,12 +94,12 @@
       <div class="apropos-texte">
         <h3>Un développeur passionné 👋</h3>
         <p>
-          Je m'appelle John Doe, j'ai 22 ans et je suis basé à Abidjan, Côte d'Ivoire.
-          Je me forme en développement web avec un intérêt particulier pour
+          Je m'appelle Ivan Adon, j'ai 24 ans et je suis basé à Abidjan, Côte d'Ivoire.
+          Je me forme en développement web dans le but de pouvoir créer des sites et applications pour améliorer le travail des entreprises et particuliers avec un intérêt particulier pour
           la création d'interfaces modernes et performantes.
         </p>
         <p>
-          En dehors du code, j'aime la musique, le sport et apprendre
+          En dehors du code, j'aime la lecture, le sport et apprendre
           de nouvelles choses chaque jour.
         </p>
 
@@ -141,13 +108,9 @@
           <li><strong>📍 Localisation :</strong> Abidjan, Côte d'Ivoire</li>
           <li><strong>🎓 Formation :</strong> Développement Web</li>
           <li><strong>💼 Disponibilité :</strong> Ouvert aux opportunités</li>
-          <li><strong>📧 Email :</strong> johndoe@email.com</li>
+          <li><strong>📧 Email :</strong> ivannadon9@gmail.com</li>
         </ul>
 
-        <!-- Bouton pour télécharger le CV -->
-        <a href="cv.pdf" class="btn btn-principal" download>
-          Télécharger mon CV 📄
-        </a>
       </div>
 
     </div>
@@ -156,7 +119,7 @@
 
 
   <!-- ==============================
-       4. SECTION COMPÉTENCES
+        SECTION COMPÉTENCES
   ============================== -->
   <section id="competences" class="section section-grise">
 
@@ -206,20 +169,83 @@
 
       <div class="competence-carte reveal delai-5">
         <div class="competence-icone">📱</div>
-        <h3>Responsive Design</h3>
+        <h3>React</h3>
         <div class="barre-container">
-          <div class="barre" data-niveau="80"></div>
+          <div class="barre" data-niveau="0"></div>
         </div>
-        <span class="niveau-texte">80%</span>
+        <span class="niveau-texte">0%</span>
       </div>
 
       <div class="competence-carte reveal delai-6">
         <div class="competence-icone">🔧</div>
-        <h3>VS Code</h3>
+        <h3>TypeScript</h3>
         <div class="barre-container">
-          <div class="barre" data-niveau="90"></div>
+          <div class="barre" data-niveau="0"></div>
         </div>
-        <span class="niveau-texte">90%</span>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-7">
+        <div class="competence-icone">🔧</div>
+        <h3>node.js</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-8">
+        <div class="competence-icone">🔧</div>
+        <h3>Express.js</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-9">
+        <div class="competence-icone">🔧</div>
+        <h3>PostgreSQL</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-10">
+        <div class="competence-icone">🔧</div>
+        <h3>API REST</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-11">
+        <div class="competence-icone">🔧</div>
+        <h3>Authentification JWT</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-12">
+        <div class="competence-icone">🔧</div>
+        <h3>Vercel</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
+      </div>
+
+      <div class="competence-carte reveal delai-13">
+        <div class="competence-icone">🔧</div>
+        <h3>Docker</h3>
+        <div class="barre-container">
+          <div class="barre" data-niveau="0"></div>
+        </div>
+        <span class="niveau-texte">0%</span>
       </div>
 
     </div>
@@ -228,7 +254,7 @@
 
 
   <!-- ==============================
-       5. SECTION PROJETS
+        SECTION PROJETS
   ============================== -->
   <section id="projets" class="section">
 
@@ -237,19 +263,15 @@
       <p>Ce que j'ai réalisé</p>
     </div>
 
-    <!-- Grille de projets — clique sur une carte pour voir les détails -->
+    <!-- Grille de projets -->
     <div class="projets-grille">
 
       <!-- ================================
            PROJET 1
-           onclick="ouvrirModale('projet1')"
-           → au clic, le JS ouvre la modale
-           avec l'id "projet1"
       ================================ -->
       <div class="projet-carte reveal delai-1" onclick="ouvrirModale('projet1')">
         <div class="projet-image">
-          <!-- Remplace par une capture d'écran de ton projet -->
-          <img src="images/projet1.jpg" alt="Page d'atterrissage">
+          <img src="images/projet1.jpg" alt="Mon portfolio">
           <!-- Icône loupe qui apparaît au survol -->
           <div class="projet-overlay">
             <span class="overlay-icone">🔍</span>
@@ -257,50 +279,12 @@
           </div>
         </div>
         <div class="projet-info">
-          <h3>Page d'atterrissage</h3>
-          <p>Landing page moderne pour une startup fictive.</p>
-          <div class="projet-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJET 2 -->
-      <div class="projet-carte reveal delai-2" onclick="ouvrirModale('projet2')">
-        <div class="projet-image">
-          <img src="images/projet2.jpg" alt="Calculatrice">
-          <div class="projet-overlay">
-            <span class="overlay-icone">🔍</span>
-            <p>Voir les détails</p>
-          </div>
-        </div>
-        <div class="projet-info">
-          <h3>Calculatrice</h3>
-          <p>Une calculatrice fonctionnelle avec JavaScript pur.</p>
+          <h3>Mon portfolio</h3>
+          <p>Portfolio personnel présentant mes compétences, mes projets en développement web et mon parcours dans l'informatique.</p>
           <div class="projet-tags">
             <span class="tag">HTML</span>
             <span class="tag">CSS</span>
             <span class="tag">JavaScript</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROJET 3 -->
-      <div class="projet-carte reveal delai-3" onclick="ouvrirModale('projet3')">
-        <div class="projet-image">
-          <img src="images/projet3.jpg" alt="Site Restaurant">
-          <div class="projet-overlay">
-            <span class="overlay-icone">🔍</span>
-            <p>Voir les détails</p>
-          </div>
-        </div>
-        <div class="projet-info">
-          <h3>Site Restaurant</h3>
-          <p>Site vitrine pour un restaurant avec menu interactif.</p>
-          <div class="projet-tags">
-            <span class="tag">HTML</span>
-            <span class="tag">CSS</span>
           </div>
         </div>
       </div>
@@ -312,13 +296,9 @@
 
   <!-- ==============================
        MODALES DES PROJETS
-       Ce sont des fenêtres popup cachées
-       par défaut. Le JS les affiche quand
-       on clique sur une carte projet.
   ============================== -->
 
   <!-- MODALE PROJET 1 -->
-  <!-- id="projet1" correspond au ouvrirModale('projet1') -->
   <div class="modale" id="projet1">
     <div class="modale-contenu">
 
@@ -326,16 +306,16 @@
       <button class="modale-fermer" onclick="fermerModale('projet1')">×</button>
 
       <!-- Image du projet dans la modale -->
-      <img src="images/projet1.jpg" alt="Page d'atterrissage" class="modale-image">
+      <img src="images/projet1.jpg" alt="Mon portfolio" class="modale-image">
 
       <div class="modale-corps">
-        <h2>Page d'atterrissage</h2>
+        <h2>Mon portfolio</h2>
 
         <!-- Description complète -->
         <p class="modale-description">
-          Création d'une landing page complète pour une startup fictive dans le
-          domaine de la tech. L'objectif était de présenter le produit de façon
-          claire et d'inciter le visiteur à s'inscrire.
+          Portfolio personnel présentant mes compétences, mes projets en développement web et mon parcours dans l'informatique.
+          .L'objectif était de présenter mes projets et expertises tout en mettant en 
+          pratique ce que j'ai appris.
         </p>
 
         <!-- Informations clés du projet -->
@@ -346,7 +326,7 @@
             <div class="projet-tags">
               <span class="tag">HTML5</span>
               <span class="tag">CSS3</span>
-              <span class="tag">Flexbox</span>
+              <span class="tag">JavaScript</span>
             </div>
           </div>
 
@@ -357,7 +337,7 @@
 
           <div class="modale-info-item">
             <span class="info-label">🎯 Objectif</span>
-            <p>Maîtriser la mise en page avec Flexbox et créer un design attractif.</p>
+            <p>Maitriser les langages et présenter mon expertise et projets réalisés.</p>
           </div>
 
           <div class="modale-info-item">
@@ -369,8 +349,8 @@
 
         <!-- Boutons d'action -->
         <div class="modale-boutons">
-          <a href="#" class="btn btn-principal">🌐 Voir en ligne</a>
-          <a href="#" class="btn btn-secondaire">🐙 Voir sur GitHub</a>
+          <a href="https://ivanadon9.github.io/mon-portfolio/" class="btn btn-principal">🌐 Voir en ligne</a>
+          <a href="https://github.com/ivanadon9/mon-portfolio" class="btn btn-secondaire">🐙 Voir sur GitHub</a>
         </div>
       </div>
 
@@ -492,7 +472,7 @@
           <span class="contact-icone">📧</span>
           <div>
             <strong>Email</strong>
-            <p>johndoe@email.com</p>
+            <p>ivannadon9@gmail.com</p>
           </div>
         </div>
 
@@ -506,8 +486,8 @@
 
         <!-- Liens réseaux sociaux -->
         <div class="reseaux-sociaux">
-          <a href="#" class="reseau-lien">GitHub</a>
-          <a href="#" class="reseau-lien">LinkedIn</a>
+          <a href="https://github.com/ivanadon9" class="reseau-lien">GitHub</a>
+          <a href="www.linkedin.com/in/ivan-adon" class="reseau-lien">LinkedIn</a>
           <a href="#" class="reseau-lien">Twitter</a>
         </div>
 
@@ -552,7 +532,7 @@
   ============================== -->
   <footer>
     <p>
-      © 2025 John Doe — Fait avec ❤️ et beaucoup de ☕
+      © 2026 Ivan Adon — Fait avec ❤️ et beaucoup de ☕
     </p>
     <p>
       <a href="#accueil">Retour en haut ↑</a>
@@ -562,9 +542,7 @@
 
   <!-- Bouton flottant retour en haut -->
   <button id="btn-haut" title="Retour en haut">↑</button>
-
-  <!-- On relie notre fichier JavaScript (toujours à la fin du body) -->
-  <!-- Pourquoi à la fin ? Pour que le HTML charge avant le JS -->
+  
   <script src="script.js"></script>
 
 </body>
