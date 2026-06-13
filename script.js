@@ -363,52 +363,89 @@ function initFormulaire() {
   const formulaire = document.getElementById('contactForm');
   if (!formulaire) return;
 
-  // Crée et ajoute le div de succès dans le formulaire
+  // Crée le message de succès
   const msgSucces = document.createElement('div');
   msgSucces.classList.add('form-succes');
-  msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
   formulaire.appendChild(msgSucces);
 
   formulaire.addEventListener('submit', (e) => {
-    // e.preventDefault() = annule le rechargement de la page
     e.preventDefault();
 
     // Récupère les valeurs des champs
     const nom     = document.getElementById('nom').value.trim();
     const email   = document.getElementById('email').value.trim();
+    const sujet   = document.getElementById('sujet').value.trim();
     const message = document.getElementById('message').value.trim();
 
-    // Validation basique — tous les champs doivent être remplis
-    if (!nom || !email || !message) {
-      alert('Merci de remplir tous les champs !');
+    // Validation : tous les champs doivent être remplis
+    if (!nom || !email || !sujet || !message) {
+      afficherErreur(msgSucces, '⚠️ Merci de remplir tous les champs !');
       return;
     }
 
-    // Ici tu pourras plus tard connecter un vrai service d'envoi
-    // (ex: EmailJS, Formspree...). Pour l'instant on simule.
+    // Validation : format email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      afficherErreur(msgSucces, '⚠️ Adresse email invalide.');
+      return;
+    }
 
-    // Animation du bouton pendant "l'envoi"
+    // Animation du bouton pendant l'envoi
     const bouton = formulaire.querySelector('button[type="submit"]');
     bouton.textContent = 'Envoi en cours...';
     bouton.disabled = true;
 
-    // Simule un délai réseau de 1.5s
-    setTimeout(() => {
-      // Réinitialise le formulaire
-      formulaire.reset();
-      bouton.textContent = 'Envoyer le message ✉️';
-      bouton.disabled = false;
+    // Paramètres envoyés à EmailJS
+    // Ces noms (from_name, from_email...) doivent correspondre
+    // exactement aux {{variables}} de ton template EmailJS
+    const parametres = {
+      from_name  : nom,
+      from_email : email,
+      subject    : sujet,
+      message    : message,
+    };
 
-      // Affiche le message de succès
-      msgSucces.classList.add('visible');
+    // =====================================================
+    // REMPLACE ces deux valeurs par les tiennes :
+    // - "TON_SERVICE_ID"  → ton Service ID EmailJS
+    // - "TON_TEMPLATE_ID" → ton Template ID EmailJS
+    // =====================================================
+    emailjs.send("TON_SERVICE_ID", "TON_TEMPLATE_ID", parametres)
 
-      // Cache le message après 4 secondes
-      setTimeout(() => {
-        msgSucces.classList.remove('visible');
-      }, 4000);
+      .then(() => {
+        // ✅ Email envoyé avec succès
+        formulaire.reset();
+        bouton.textContent = 'Envoyer le message ✉️';
+        bouton.disabled = false;
 
-    }, 1500);
+        msgSucces.style.background = 'rgba(0, 212, 255, 0.08)';
+        msgSucces.style.borderColor = 'var(--cyber-blue)';
+        msgSucces.style.color = 'var(--cyber-blue)';
+        msgSucces.textContent = '✅ Message envoyé ! Je te réponds bientôt.';
+        msgSucces.classList.add('visible');
+
+        // Cache le message après 5 secondes
+        setTimeout(() => msgSucces.classList.remove('visible'), 5000);
+      })
+
+      .catch((erreur) => {
+        // ❌ Échec de l'envoi
+        console.error('EmailJS erreur :', erreur);
+        bouton.textContent = 'Envoyer le message ✉️';
+        bouton.disabled = false;
+        afficherErreur(msgSucces, '❌ Échec de l'envoi. Réessaie ou contacte-moi directement.');
+      });
   });
+}
+
+// Fonction utilitaire pour afficher un message d'erreur
+function afficherErreur(element, texte) {
+  element.style.background = 'rgba(255, 50, 50, 0.08)';
+  element.style.borderColor = '#ff3232';
+  element.style.color = '#ff6464';
+  element.textContent = texte;
+  element.classList.add('visible');
+  setTimeout(() => element.classList.remove('visible'), 4000);
 }
 
 
